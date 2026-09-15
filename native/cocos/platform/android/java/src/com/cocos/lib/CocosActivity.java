@@ -117,6 +117,13 @@ public class CocosActivity extends GameActivity {
 
     protected void initView() {
         mRootLayout = findViewById(contentViewId);
+
+        // ★ 关键：让游戏 SurfaceView 支持透明（alpha 通道合成）
+        mSurfaceView.getHolder().setFormat(android.graphics.PixelFormat.TRANSLUCENT);
+        // 将游戏主 SurfaceView 提升至 MediaOverlay 层 (-1)
+        // 使其位于 VideoPlayer 默认层 (-2) 之上
+        mSurfaceView.setZOrderMediaOverlay(true);
+
         if (mWebViewHelper == null) {
             mWebViewHelper = new CocosWebViewHelper(mRootLayout);
         }

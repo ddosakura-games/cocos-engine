@@ -260,13 +260,13 @@ public class CocosVideoView extends SurfaceView {
         setMeasuredDimension(mVisibleWidth, mVisibleHeight);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
-            this.sendEvent(EVENT_CLICKED);
-        }
-        return true;
-    }
+    // @Override
+    // public boolean onTouchEvent(MotionEvent event) {
+    //     if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+    //         this.sendEvent(EVENT_CLICKED);
+    //     }
+    //     return true;
+    // }
 
     // ===========================================================
     // Public functions

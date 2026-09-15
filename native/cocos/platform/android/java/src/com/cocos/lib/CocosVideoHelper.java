@@ -229,7 +229,7 @@ public class CocosVideoHelper {
                 FrameLayout.LayoutParams.WRAP_CONTENT);
         mLayout.addView(videoView, lParams);
 
-        videoView.setZOrderOnTop(true);
+        // videoView.setZOrderOnTop(true);
         videoView.setVideoViewEventListener(videoEventListener);
     }
 
