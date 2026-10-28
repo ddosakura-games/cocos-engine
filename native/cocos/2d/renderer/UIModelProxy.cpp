@@ -86,6 +86,10 @@ void UIModelProxy::uploadData() {
     const auto& subModelList = _model->getSubModels();
     for (size_t i = 0; i < drawInfos.size(); i++) {
         auto* drawInfo = drawInfos[i];
+        // 守卫：场景切换/弹窗动态建 Graphics 首帧 drawInfo 未就绪时，activeSubModels 可能提前 return
+        // 未补齐 subModelList（subModelList.size() < drawInfos.size()），此时 .at(i) 会抛 std::out_of_range
+        // 导致进程 abort。此处跳过本帧上传，等下一帧 activeSubModels 补齐后再传，代价仅为一帧视觉跳变。
+        if (i >= subModelList.size()) continue;
         auto* ia = subModelList.at(i)->getInputAssembler();
         if (drawInfo->getVertexOffset() <= 0 || drawInfo->getIndexOffset() <= 0) continue;
         gfx::BufferList vBuffers = ia->getVertexBuffers();
